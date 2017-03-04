@@ -11,6 +11,7 @@ public class Ghostbusters extends World
     private int score;
     private int time;
     private int gameState;
+    GreenfootSound music = new GreenfootSound("background.mp3");
     /**
      * Constructor for objects of class Ghostbusters.
      * 
@@ -31,6 +32,7 @@ public class Ghostbusters extends World
     
      public void act() 
     {
+        if (!music.isPlaying()) music.play();
         if (Greenfoot.getRandomNumber(100) < 3)
         {
             addObject(new Slimer(), 779, Greenfoot.getRandomNumber(360));

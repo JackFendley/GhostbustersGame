@@ -8,6 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class TitleScreen extends World
 {
+    boolean play = true;
+    GreenfootSound music = new GreenfootSound("titlescreen.mp3");
     private PlayButton playButton;
     /**
      * Constructor for objects of class TitleScreen.
@@ -21,13 +23,17 @@ public class TitleScreen extends World
         //size of world / image
         playButton = new PlayButton();
         addObject(playButton, getWidth()-310, getHeight() -40);
-        
+        play = true;
         //adds play button
     }
     
      public void act()
     {
         //check if mouse clicks the play button
+        
+        if (!music.isPlaying() && play == true) {
+            music.play();
+        }
         checkMouse();
     }
 
@@ -37,7 +43,10 @@ public class TitleScreen extends World
     public void checkMouse()
     {
         //start the game if the player clicks on the play button
-        if(Greenfoot.mouseClicked(playButton))
-            Greenfoot.setWorld(new Ghostbusters());
+        if(Greenfoot.mouseClicked(playButton)){
+            play = false;
+            music.stop();
+            Greenfoot.setWorld(new Ghostbusters()) ;        
+        }
     }
 }
